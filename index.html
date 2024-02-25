@@ -1,153 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- displays site properly based on user's device -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+    <title>Frontend Mentor | Results summary component</title>
 
-  <title>Frontend Mentor | Results summary component</title>
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      @font-face {
+        font-family: Hanken Grotesk;
+        src: url(/assets/fonts/HankenGrotesk-VariableFont_wght.ttf);
+      }
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    @font-face {
-      font-family: Hanken Grotesk;
-      src: url(/assets/fonts/HankenGrotesk-VariableFont_wght.ttf);
-    }
+      .color-red {
+        color: hsl(0, 100%, 67%);
+        background: hsl(0, 100%, 98%);
+      }
 
-    html,
-    body {
-      font-family: Hanken Grotesk;
-      padding: 0;
-      margin: 0;
-      width: 100%;
-      height: 100%;
-    }
+      .color-orange {
+        color: hsl(39, 100%, 56%);
+        background: hsl(45, 100%, 98%);
+      }
 
-    .attribution {
-      font-size: 11px;
-      text-align: center;
-    }
+      .color-teal {
+        color: hsl(166, 100%, 37%);
+        background: hsl(166, 100%, 98%);
+      }
 
-    .attribution a {
-      color: hsl(228, 45%, 44%);
-    }
+      .color-blue {
+        color: hsl(234, 85%, 45%);
+        background: hsl(234, 85%, 98%);
+      }
 
-    .summary-element {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      border: 1px solid black;
-      border-radius: 0.4rem;
-      padding: 0.7rem 1rem;
-    }
+      @media screen and (max-width: 400px) {
+        .main-card {
+          display: flex;
+          flex-direction: column;
+        }
+        .card-one {
+          border-radius: 0px 0px 30px 30px;
+        }
+        .card-one h2 {
+          margin: 0px;
+          font-size: large;
+        }
+        .big-text {
+          font-size: 45px;
+        }
+        .card {
+          padding: 2rem 1rem;
+        }
+        .card-score {
+          padding: 1.5rem;
+        }
+        .card-two {
+          row-gap: 1rem;
+        }
+        .button {
+          margin-top: 0.6rem;
+        }
+      }
 
-    .summary-btn {
-      font-weight: bold;
-      width: 100%;
-      height: 3rem;
-      border-radius: 1rem;
-    }
-  </style>
-</head>
+      @media screen and (min-width: 401px) {
+        .main-card {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          width: 780px;
+        }
+        .wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 100%;
+        }
+        .card-one {
+          border-radius: 30px;
+        }
+        .big-text {
+          font-size: 70px;
+        }
+        .card {
+          padding: 2rem 3rem;
+        }
+        .card-score {
+          padding: 2.5rem;
+        }
+        .button {
+          margin-top: 1.5rem;
+        }
+      }
 
-<body>
-
-  <div style="height: 100%;display: flex;">
-    <div style="
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        width: 50%;
-        margin: auto;
-        border-radius: 2rem;
-        box-shadow: 2px 2px 10px 1px hsl(241, 100%, 89%);
-      ">
-      <div style="
-          padding: 2rem;
-          border-radius: 2rem;
-          background-image: linear-gradient(hsl(252, 100%, 67%), hsl(241, 81%, 54%));
-        ">
-        <span>
-          Your Result
-        </span>
-        <div style="
-          background-image: linear-gradient(hsla(256, 72%, 46%, 1), hsla(241, 72%, 46%, 0));
-        ">
-          <span>
-            76
-          </span>
-          <span>
-            of 100
-          </span>
-        </div>
-        <h3>
-          Great
-        </h3>
-        <span>
-          You scored higher than 65% of the people who have taken these tests.
-        </span>
-      </div>
-      <div style="
-        padding: 2rem;
+      body,
+      html {
+        font-size: 18px;
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+        font-family: "Hanken Grotesk";
+      }
+      .main-card {
+        border-radius: 30px;
+        background: hsl(0, 0%, 100%);
+        box-shadow: 1px 1px 1px 1px hsl(241, 100%, 89%);
+      }
+      .card-one {
+        color: hsl(241, 100%, 89%);
+        background-image: linear-gradient(
+          hsl(252, 100%, 67%),
+          hsl(241, 81%, 54%)
+        );
+      }
+      .card-one h1 {
+        color: hsl(0, 0%, 100%);
+        margin: 1rem;
+        margin-bottom: 0px;
+        margin-top: 0px;
+      }
+      .card-one p {
+        text-align: center;
+        margin: 1rem;
+        line-height: 1.3rem;
+        font-weight: bold;
+      }
+      .card-score {
+        border-radius: 50%;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        background-image: linear-gradient(
+          hsla(256, 72%, 46%, 1),
+          hsla(241, 72%, 46%, 0)
+        );
+      }
+      .card-one,
+      .card-score {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .card-score > span {
+        font-weight: bold;
+        color: hsl(252, 100%, 67%);
+      }
+      .card-two {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        row-gap: 2rem;
-      ">
-        <span style="
-          font-weight: bold;
-        ">
-          Summary
-        </span>
+      }
+      .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        border-radius: 10px;
+        font-weight: bold;
+      }
+      .item .type {
+        display: flex;
+      }
+      .type img {
+        margin-right: 0.5rem;
+      }
+      .item .score {
+        font-weight: 800;
+      }
+      .item-score {
+        color: hsl(224, 30%, 27%);
+      }
+      .item-total {
+        color: gray;
+      }
+      .button {
+        padding: 1rem 1rem;
+        color: white;
+        font-size: large;
+        border-radius: 2rem;
+        background: hsl(224, 30%, 27%);
+        border: none;
+        font-weight: bold;
+      }
+      .button:hover {
+        background-image: linear-gradient(
+          hsl(252, 100%, 67%),
+          hsl(241, 81%, 54%)
+        );
+        cursor: pointer;
+      }
+    </style>
+  </head>
 
-        <div style="
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          row-gap: 0.5rem;
-        ">
-          <div class="summary-element">
-            <span>
+  <body>
+    <div class="wrapper">
+      <div class="main-card">
+        <div class="card card-one">
+          <h2>Your Result</h2>
+          <div class="card-score">
+            <h1 class="big-text">76</h1>
+            <span> of 100 </span>
+          </div>
+          <h1>Great</h1>
+          <p>
+            You scored higher than 65% of the people who have taken these tests.
+          </p>
+        </div>
+        <div class="card card-two">
+          <h3>Summary</h3>
+
+          <div class="item color-red">
+            <span class="type">
+              <img src="assets/images/icon-reaction.svg" />
               Reaction
             </span>
-            <span>
-              80 <span>/ 100</span>
+            <span class="score">
+              <span class="item-score">80</span>
+              <span class="item-total">/ 100</span>
             </span>
           </div>
-          <div class="summary-element">
-            <span>
+          <div class="item color-orange">
+            <span class="type">
+              <img src="assets/images/icon-memory.svg" />
               Memory
             </span>
-            <span>
-              92 <span>/ 100</span>
+            <span class="score">
+              <span class="item-score">92</span>
+              <span class="item-total"> / 100</span>
             </span>
           </div>
-          <div class="summary-element">
-            <span>
+          <div class="item color-teal">
+            <span class="type">
+              <img src="assets/images/icon-verbal.svg" />
               Verbal
             </span>
-            <span>
-              61 <span>/ 100</span>
+            <span class="score">
+              <span class="item-score">61</span>
+              <span class="item-total">/ 100</span>
             </span>
           </div>
-          <div class="summary-element">
-            <span>
+          <div class="item color-blue">
+            <span class="type">
+              <img src="assets/images/icon-visual.svg" />
               Visual
             </span>
-            <span>
-              72 <span>/ 100</span>
+            <span class="score">
+              <span class="item-score">72</span>
+              <span class="item-total">/ 100</span>
             </span>
           </div>
+
+          <button class="button">Continue</button>
         </div>
-        <button class="summary-btn">
-          Continue
-        </button>
       </div>
     </div>
-  </div>
-
-</body>
-
+  </body>
 </html>
